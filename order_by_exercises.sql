@@ -30,12 +30,14 @@ OR first_name = 'Maya');
 SELECT *
 FROM employees
 WHERE last_name LIKE 'E%'
-OR last_name LIKE '%E';
+OR last_name LIKE '%E'
+ORDER BY emp_no DESC;
 
 SELECT *
 FROM employees
 WHERE last_name LIKE 'E%'
-AND last_name LIKE '%E';
+AND last_name LIKE '%E'
+ORDER BY emp_no DESC;
 
 SELECT *
 FROM employees
@@ -72,6 +74,8 @@ FROM employees
 WHERE last_name LIKE 'E%'
 ORDER BY emp_no DESC;
 
+-- Change the query for employees hired in the 90s and born on Christmas such that the first result is the oldest
+-- employee who was hired last
 SELECT *
 FROM employees
 WHERE hire_date LIKE '199%'
