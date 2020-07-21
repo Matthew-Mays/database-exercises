@@ -54,21 +54,26 @@ FROM employees
 WHERE hire_date LIKE '%-10-31'
 AND birth_date LIKE '%-10-%';
 
+-- Modify first query to order by first name
 SELECT *
 FROM employees
 WHERE first_name IN ('Irena', 'Vidya', 'Maya')
 ORDER BY first_name;
 
+-- Update the query to order by first name then last name
 SELECT *
 FROM employees
 WHERE first_name IN ('Irena', 'Vidya', 'Maya')
 ORDER BY first_name, last_name;
 
+-- Change the order by clause to last name then first name
 SELECT *
 FROM employees
 WHERE first_name IN ('Irena', 'Vidya', 'Maya')
 ORDER BY last_name, first_name;
 
+
+-- Update queries for employees with E in their last name to sort by employee number and then reverse it
 SELECT *
 FROM employees
 WHERE last_name LIKE 'E%'
