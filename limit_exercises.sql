@@ -24,4 +24,4 @@ AND birth_date LIKE '%-12-25'
 ORDER BY birth_date, hire_date DESC
 LIMIT 5 OFFSET 45;
 
--- The Relationship between LIMIT(L), OFFSET(O), and PAGE NUMBER(P) is P = O / Like + 1 
+-- The Relationship between LIMIT(L), OFFSET(O), and PAGE NUMBER(P) is P = O / L + 1 
