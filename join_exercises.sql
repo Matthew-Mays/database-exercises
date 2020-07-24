@@ -50,6 +50,7 @@ JOIN dept_emp AS de
 JOIN departments AS d
   ON de.dept_no = d.dept_no AND d.dept_no = 'd009'
 WHERE t.to_date > curdate()
+  AND de.to_date > curdate()
 GROUP BY t.title;
 
 -- Find the current salary of all current managers
@@ -105,25 +106,24 @@ ORDER BY salary DESC
 LIMIT 1;
 
 -- Find the names of all current employees, their department name, and their current manager's name
-SELECT CONCAT(e.first_name, ' ', e.last_name) AS "Employee Name", d.dept_name, mn.Mgr_Name
+SELECT CONCAT(e.first_name, ' ', e.last_name) AS "Employee Name", d.dept_name AS "Department Name", mn.Mgr_Name AS "Manager Name"
 FROM employees AS e
 JOIN dept_emp AS de
   ON de.emp_no = e.emp_no AND de.to_date > CURDATE()
 JOIN departments AS d
   ON d.dept_no = de.dept_no
 JOIN ( -- Subquery to get department managers' names
-		SELECT dm.dept_no, CONCAT(e.first_name, ' ', e.last_name) Mgr_Name 
+		SELECT dm.dept_no, CONCAT(e.first_name, ' ', e.last_name) Mgr_Name
 	FROM departments AS d
 	JOIN dept_manager AS dm
   	  ON dm.dept_no = d.dept_no AND dm.to_date > CURDATE()
 	JOIN employees AS e
   	  ON dm.emp_no = e.emp_no
-  	 
   	 ) AS mn
   ON mn.dept_no = d.dept_no;
 
 -- Find the highest paid employee in each department
-SELECT  d.dept_name, CONCAT(first_name, ' ', last_name) AS full_name, d_max.sal
+SELECT  d.dept_name AS "Department Name", CONCAT(first_name, ' ', last_name) AS full_name, d_max.sal AS "Salary"
 FROM employees AS e
 JOIN dept_emp AS de
   ON e.emp_no = de.emp_no AND de.to_date > CURDATE()
@@ -145,3 +145,4 @@ JOIN (
   ON de.dept_no = d_max.dept_no
 WHERE salary = d_max.sal
 ORDER BY d.dept_name;
+
