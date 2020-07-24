@@ -1,3 +1,26 @@
+USE join_example_db;
+
+SELECT *
+FROM users
+JOIN roles
+  ON users.role_id = roles.id;
+
+SELECT *
+FROM users
+LEFT JOIN roles
+  ON users.role_id = roles.id;
+  
+SELECT *
+FROM users
+RIGHT JOIN roles
+  ON users.role_id = roles.id;
+  
+SELECT r.name, COUNT(*)
+FROM roles AS r
+JOIN users
+  ON r.id = users.role_id
+GROUP BY r.name;
+
 USE employees;
 
 -- Show each department's name and the name of the current manager for that department
