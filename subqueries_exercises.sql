@@ -1,7 +1,7 @@
 USE employees;
 
 -- Find all employees with the same hire_date as employee 101010 using a sub-query
-SELECT *
+SELECT e.*
 FROM ( 
 		SELECT *
 		FROM employees WHERE emp_no = 101010
@@ -19,12 +19,12 @@ FROM (
   	 ) AS a_list;
 
 -- How many people in the employees table are no longer working at the company	
-SELECT CONCAT(first_name, ' ', last_name) AS "Full Name"
+SELECT CONCAT(first_name, ' ', last_name) AS "Full Name", emp_no
 FROM employees
-WHERE emp_no IN (
+WHERE emp_no NOT IN (
     SELECT emp_no
     FROM dept_emp AS de
-    WHERE to_date < CURDATE()
+    WHERE to_date > CURDATE()
 );
 
 -- Find all the current department managers that are female
